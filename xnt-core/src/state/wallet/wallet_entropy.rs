@@ -43,6 +43,15 @@ impl WalletEntropy {
         Self::new(secret_seed)
     }
 
+    /// Returns the secret seed.
+    pub fn secret_seed(&self) -> &SecretKeyMaterial {
+        &self.secret_seed
+    }
+
+    pub fn encoded_secret_seed(&self) -> Vec<BFieldElement> {
+        self.secret_seed.0.encode()
+    }
+
     /// Returns the spending key for guesser rewards.
     pub fn guesser_fee_key(&self) -> generation_address::GenerationSpendingKey {
         self.nth_generation_spending_key(0u64)
